@@ -1,6 +1,5 @@
 <div class="modal-header">
   <h4 class="modal-title">{{title || 'Add'}} book</h4>
-
 </div>
 <div class="modal-body">
 
@@ -14,7 +13,7 @@
     <input type="text" class="form-control" id="description" [(ngModel)]="book.description" placeholder="Enter book description">
   </div>
 
-  <input type="file" [(ngModel)]="avatar" (change)="onFileChange($event)" #fileInput>
+  <input type="file" (change)="onFileChange($event)">
 
 
   <button type="button" class="btn btn-primary" (click)="save()">Submit</button>

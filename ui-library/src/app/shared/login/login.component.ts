@@ -22,5 +22,6 @@ export class LoginComponent implements OnInit {
   login() {
     this.cookieService.set('user', this.userName);
     console.log(this.cookieService.get('user'));
+    this.activeModal.dismiss();
   }
 }

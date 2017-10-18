@@ -20,17 +20,19 @@ export class DetailComponent implements OnInit {
               private _router:Router,
               private _bookService:BookService,
               private modalService:NgbModal) {
+    this.book = {id: null, title: '', description: null, imageUrl: null, status: null, _links: null};
   }
 
   ngOnInit() {
     const id = +this._route.snapshot.paramMap.get('id');
-    this.getBook(id);
+    this.findOne(id);
   }
 
-  getBook(id:number) {
+  findOne(id:number) {
     this._bookService.findOne(id).subscribe(
       book => this.book = book,
-      error => this.errorMessage = <any>error);
+      error => this.errorMessage = <any>error
+    );
   }
 
   edit() {
@@ -40,7 +42,7 @@ export class DetailComponent implements OnInit {
   }
 
 
-  delete() {
+  deleteBook() {
     this._bookService.delete(this.book.id);
   }
 

@@ -18,11 +18,13 @@ export class ListComponent implements OnInit {
   
   ngOnInit(): void {
     this._bookService.findAll()
-      .subscribe(books => {
+      .subscribe(
+        books => {
           this.books = books;
           this.filteredBooks = this.books;
         },
-        error => this.errorMessage = <any>error);
+        error => this.errorMessage = <any>error
+      );
   }
 
 }

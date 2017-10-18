@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {IBook} from "../book";
 import {environment} from "../../../environments/environment";
 import {BookService} from "../book.service";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-edit',
@@ -21,26 +22,25 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     if (this.id) {
       this._bookService.findOne(this.id).subscribe(book => this.book = book);
-    } else {
-      this.book = {id: null, title: '', description: null, imageUrl: null, status: null, tags: null, _links: null};
     }
   }
 
-  constructor(private _bookService:BookService, private _http:HttpClient) {
-
+  constructor(private _bookService:BookService, private _http:HttpClient, public activeModal:NgbActiveModal) {
+    this.book = {id: null, title: '', description: null, imageUrl: null, status: null, _links: null};
   }
 
   save() {
-    let saveBook = this._bookService.save(this.book);
-    saveBook.subscribe((b:IBook)=> {
-      let formModel = this.prepareSave(b);
-      this._http.post(this.multimedia_service_url, formModel).subscribe();
-    });
+    this._bookService.save(this.book).subscribe(
+      (book:IBook)=> {
+        console.log(book);
+        this.uploadImage(book);
+        this.activeModal.dismiss();
+      },
+      error=> {
+        console.error(error);
+      }
+    );
   }
-
-
-  @ViewChild('fileInput')
-  fileInput:ElementRef;
 
   onFileChange(event) {
     if (event.target.files.length > 0) {
@@ -48,16 +48,19 @@ export class EditComponent implements OnInit {
     }
   }
 
-  private prepareSave(book:IBook):any {
-    let input = new FormData();
-    input.append('bookId', '' + book.id);
-    input.append('data', this.avatar);
-    return input;
+  private uploadImage(book:IBook):any {
+    if (this.avatar) {
+      let input = new FormData();
+      input.append('bookId', '' + book.id);
+      input.append('data', this.avatar);
+      this._http.post(this.multimedia_service_url, input).subscribe(
+        data => {
+          console.log(data)
+        },
+        error=> {
+          //console.error(error);
+        }
+      );
+    }
   }
-
-  clearFile() {
-    this.avatar = null;
-    this.fileInput.nativeElement.value = '';
-  }
-
 }
