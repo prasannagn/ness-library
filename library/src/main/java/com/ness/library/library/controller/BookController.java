@@ -40,7 +40,7 @@ public class BookController {
 
     //Read
     @RequestMapping(value = "/books", produces = "application/hal+json", method = GET)
-    public ResponseEntity<PageResource<BookResource>> list(@PageableDefault(size = 1, page = 0) Pageable pageable, @RequestParam(required = false) Integer memberId) {
+    public ResponseEntity<PageResource<BookResource>> list(@PageableDefault(size = 25, page = 0) Pageable pageable, @RequestParam(required = false) Integer memberId) {
         Page<Book> books = bookService.findAll(pageable);
         Page<BookResource> booksResource = books.map(book -> new BookResource(book, memberId));
         return ResponseEntity.ok(new PageResource<BookResource>(booksResource, "page", "size"));

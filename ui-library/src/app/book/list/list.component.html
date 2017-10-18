@@ -1,0 +1,14 @@
+
+<div class="row" *ngIf='filteredBooks && filteredBooks.content && filteredBooks.content.length'>
+  <div class="col-sm-4" *ngFor='let book of filteredBooks.content'>
+    <div class="card">
+      <div class="card-block">
+        <img class="card-img" src={{book.imageUrl}} alt={{book.title}}>
+        <h3 class="card-title">{{book.title}}</h3>
+        <p class="card-text">{{book.description}}</p>
+        <a [routerLink]="['/books', book.id]" class="btn btn-primary">View</a>
+      </div>
+    </div>
+  </div>
+
+</div>

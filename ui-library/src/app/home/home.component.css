@@ -1,0 +1,43 @@
+.hero{
+  background-color: transparent;
+  position:relative;
+  justify-content: center;
+  min-height: 100vh;
+  color:#fff;
+  text-align: center;
+}
+
+.hero .background-image{
+  position:fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-color: #1A77C1;
+}
+
+.hero .background-image:after{
+  content: '';
+  position:fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #414A4F;
+  opacity: 0.75;
+}
+
+.hero h1{
+  font: bold 60px 'Henny Penny', serif;
+  font-size: 90px;
+  text-shadow: 3px 3px #000;
+  margin-bottom: 15px;
+}
+
+.hero h3{
+  font: normal 28px 'Open Sans', sans-serif;
+  margin-bottom: 40px;
+  color:aliceblue;
+}

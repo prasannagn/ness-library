@@ -1,0 +1,11 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-block">
+      <img class="card-img" src={{book.imageUrl}} alt={{book.title}}>
+      <h3 class="card-title">{{book.title}}</h3>
+      <p class="card-text">{{book.description}}</p>
+      <button  class="btn btn-primary" (click)="edit()">edit</button>
+      <button class="btn btn-primary" (click)="delete()">delete</button>
+    </div>
+  </div>
+</div>
