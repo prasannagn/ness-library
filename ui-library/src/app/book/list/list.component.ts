@@ -9,7 +9,7 @@ import {BookService} from "../book.service";
 })
 export class ListComponent implements OnInit {
   errorMessage: string;
-  filteredBooks: IBook[];
+  filteredBooks: any;
   books: IBook[] = [];
 
   constructor(private _bookService: BookService) {

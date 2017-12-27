@@ -1,0 +1,18 @@
+ui-library 
+----------
+ng new ui-library 
+Bootstrap:
+	npm install --save @ng-bootstrap/ng-bootstrap
+	npm install --save bootstrap
+	"../node_modules/bootstrap/dist/css/bootstrap.css"
+	
+ng generate component  home
+
+ng generate module  shared
+ng generate component  shared/login
+
+
+
+ 
+
+
